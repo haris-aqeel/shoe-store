@@ -6,11 +6,13 @@ import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
-
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -30,6 +32,8 @@ import StarsIcon from '@material-ui/icons/Stars';
 
 
 import DisplayData from './DisplayData'
+import DisplayShoesList from './DisplayShoesList'
+import ProductInd from '../Pages/Productind'
 
 const drawerWidth = 240;
 
@@ -87,7 +91,7 @@ function ResponsiveDrawer(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  console.log(props)
+  
   if (props.data!==undefined){
 
   var x = (props.data.filter((curr)=>{
@@ -95,9 +99,14 @@ function ResponsiveDrawer(props) {
 
   var y = (props.data.filter((curr)=>{
     return curr.reviewsCount > 66 }))
-
-
   }
+
+  if (props.ShoesList!==undefined){
+
+    var shoesList =  props.ShoesList;
+
+  
+    }
 
 
   const drawer = (
@@ -167,6 +176,13 @@ return (
         <Typography variant="h6" noWrap>
           Welcome to ShoeStore
         </Typography>
+        <MenuItem>
+         <IconButton aria-label="show 4 new mails" color="inherit">
+              <Badge badgeContent={1} color="secondary" >
+              <ShoppingCartIcon />
+              </Badge>
+          </IconButton>
+          </MenuItem>
       </Toolbar>
     </AppBar>
     <nav className={classes.drawer} aria-label="mailbox folders">
@@ -205,16 +221,17 @@ return (
     <main className={classes.content}>
       <div className={classes.toolbar} />
           {
-           
-           props.data === undefined ? (
-             <div>
-              Data Not Found  
-             </div>
-           ):(
-            <DisplayData datas={x} reviewed={y}/>
-               
-               )
             
+            
+           
+           props.data === undefined & props.ShoesList!==undefined? (
+
+                 <DisplayShoesList shoesList={shoesList} />
+           ):(
+                 
+               <DisplayData datas={x} reviewed={y}/>
+               
+          ) 
            
            
           }

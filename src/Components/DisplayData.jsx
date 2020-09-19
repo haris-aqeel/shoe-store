@@ -87,7 +87,7 @@ export default function DisplayData(props) {
                   </Button>
 
                   <Button size="small" style={{ color: "#b32727" }} >
-                  <Link to={`/products/1:${curr.id}`}  style={{ color: "#b32727", textDecoration: 'none'}}> Learn More </Link>
+                  <Link to={`/product/1:${curr.id}`}  style={{ color: "#b32727", textDecoration: 'none'}}> Learn More </Link>
                   </Button>
                 </CardActions>
               </Card>
@@ -152,7 +152,7 @@ export default function DisplayData(props) {
                   <Link to='/products'  style={{ color: "#b32727", textDecoration: 'none'}}>Go To Products</Link>
                   </Button>
                   <Button size="small" style={{ color: "#b32727" }}>
-                  <Link to={`/products/2:${curr.id}`}  style={{ color: "#b32727", textDecoration: 'none'}}>Learn More</Link>
+                  <Link to={`/product/2:${curr.id}`}  style={{ color: "#b32727", textDecoration: 'none'}}>Learn More</Link>
                   </Button>
                 </CardActions>
               </Card>

@@ -1,0 +1,42 @@
+.jss142 {
+    color: #ffffff;
+    padding: 5px 20px;
+    border-radius: 0 20px 20px 0;
+    background-color: #b32727;
+}
+
+
+#buttons1{
+    
+    background-color: #b32727;
+    color: #fff;
+}
+#buttons2{
+    margin-left: 20px;
+    background-color: black;
+    color: #fff;
+}
+
+#buttons1:hover{
+    background-color: #fff;
+    color: #b32727;
+    border: 1px solid #b32727;
+}
+
+#buttons2:hover{
+    background-color: #fff;
+    color: black;
+    border: 1px solid black;
+}
+
+
+.individualElement{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    margin: 0px auto;
+}
+
+.picture__Head{
+    min-width: 400px;
+}

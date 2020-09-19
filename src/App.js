@@ -7,9 +7,13 @@ import AboutUs from  './Pages/AboutUs'
 import ContactUs from  './Pages/ContactUs'
 import Home from './Pages/Home'
 import Productind from './Pages/Productind'
+import reducer from './Pages/State/reducer'
+import GlobalState from './Pages/State/GlobalState'
+
 
 function App() {
   return (
+    <GlobalState reducer={reducer}>
     <Router>
       <div className="app">
         <Switch>
@@ -31,6 +35,7 @@ function App() {
         </Switch>
         </div>
     </Router>
+    </GlobalState>
   );
 }
 

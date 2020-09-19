@@ -1,12 +1,12 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
-
+import ShoesList from '../data/ShoesList'
 
 const Products = () => {
     return (
         <div>
-            <Navbar />
-            <h1>Hello Products</h1>
+            <Navbar ShoesList={ShoesList}/>
+            
         </div>
     )
 }
