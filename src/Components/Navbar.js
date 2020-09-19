@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -30,7 +30,7 @@ import StarsIcon from '@material-ui/icons/Stars';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ClearIcon from '@material-ui/icons/Clear';
 
-
+import DisplayData from './DisplayData'
 
 const drawerWidth = 240;
 
@@ -84,10 +84,19 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+
+  
+  if (props.data!==undefined){
+
+  var x = (props.data.filter((curr)=>{
+    return curr.rating === 5  }))
+  
+  }
+console.log(x)
+
   const drawer = (
     <div>
       <div className={classes.toolbar} />
@@ -192,12 +201,21 @@ return (
     </nav>
     <main className={classes.content}>
       <div className={classes.toolbar} />
-      <Typography paragraph>
-        
-      </Typography>
-      <Typography paragraph>
-        
-      </Typography>
+          {
+           
+           props.data === undefined ? (
+             <div>
+              Data Not Found  
+             </div>
+           ):(
+            <DisplayData datas={x}/>
+               
+               )
+            
+           
+           
+          }
+
     </main>
   </div>
 );
