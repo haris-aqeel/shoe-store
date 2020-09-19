@@ -12,7 +12,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 
 import { Link } from 'react-router-dom'
-import Home from '../Pages/Home'
+
 
 import HomeIcon from '@material-ui/icons/Home';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -63,9 +63,9 @@ export default function PermanentDrawerLeft() {
   const classes = useStyles();
 
   const ChangeRoute = (path) => {
-    <Link to='/products'>
-      
-    </Link>
+    
+
+
   }
 
   return (
@@ -89,22 +89,30 @@ export default function PermanentDrawerLeft() {
         <div className={classes.toolbar} />
         <Divider />
           <List>
-            <ListItem button onClick={() => ChangeRoute('/')}>
-              <ListItemIcon className={classes.navIcon}> <HomeIcon/> </ListItemIcon>
-              <ListItemText primary={'Home'} />
-            </ListItem>
-            <ListItem button onClick={() => ChangeRoute('/products')}>
-              <ListItemIcon className={classes.navIcon}> <StorefrontIcon /> </ListItemIcon>
-              <ListItemText primary={'Products'} />
-            </ListItem>
-            <ListItem button onClick={() => ChangeRoute('/about')}>
-              <ListItemIcon className={classes.navIcon}> <InfoIcon /> </ListItemIcon>
-              <ListItemText primary={'About Us'} />
-            </ListItem>
-            <ListItem button onClick={() => ChangeRoute('/contact')}>
-              <ListItemIcon className={classes.navIcon}> <ContactMailIcon /> </ListItemIcon>
-              <ListItemText primary={'Contact Us'} />
-            </ListItem>
+            <Link to='/'>
+              <ListItem >
+                <ListItemIcon className={classes.navIcon}> <HomeIcon/> </ListItemIcon>
+                <ListItemText primary={'Home'} />
+              </ListItem>
+            </Link>
+            <Link to='/products'>
+              <ListItem >
+                <ListItemIcon className={classes.navIcon}> <StorefrontIcon /> </ListItemIcon>
+                <ListItemText primary={'Products'} />
+              </ListItem>
+            </Link>
+            <Link to='/about'>
+              <ListItem >
+                <ListItemIcon className={classes.navIcon}> <InfoIcon /> </ListItemIcon>
+                <ListItemText primary={'About Us'} />
+              </ListItem>
+            </Link>
+            <Link to="/contact">
+              <ListItem >
+                <ListItemIcon className={classes.navIcon}> <ContactMailIcon /> </ListItemIcon>
+                <ListItemText primary={'Contact Us'} />
+              </ListItem>
+            </Link>
             <Divider />
           <List>
             <ListItem button onClick={() => alert('This functionality will be implemented soon...')}>
