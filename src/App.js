@@ -6,7 +6,7 @@ import Products from  './Pages/Products'
 import AboutUs from  './Pages/AboutUs'
 import ContactUs from  './Pages/ContactUs'
 import Home from './Pages/Home'
-
+import Productind from './Pages/Productind'
 
 function App() {
   return (
@@ -16,8 +16,11 @@ function App() {
           <Route exact path='/'>
               <Home/>
           </Route>
-          <Route path='/products'>
+          <Route exact path='/products'>
             <Products/>
+          </Route>
+          <Route path='/product'>
+            <Productind/>
           </Route>
           <Route path='/about'>
             <AboutUs/>

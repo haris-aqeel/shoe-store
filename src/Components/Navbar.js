@@ -92,7 +92,11 @@ function ResponsiveDrawer(props) {
 
   var x = (props.data.filter((curr)=>{
     return curr.rating === 5  }))
-  
+
+  var y = (props.data.filter((curr)=>{
+    return curr.reviewsCount > 66 }))
+
+
   }
 
 
@@ -207,7 +211,7 @@ return (
               Data Not Found  
              </div>
            ):(
-            <DisplayData key={x.id} datas={x} />
+            <DisplayData datas={x} reviewed={y}/>
                
                )
             
