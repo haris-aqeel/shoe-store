@@ -12,13 +12,16 @@ const Productind = () => {
             switch (link.slice(i+9,)[0]){
                 case '1':
                     
-                   var case1 = ShoesDetails.filter((curr)=>curr.id == link.slice(i+9,)[2] )
+                   var case1 = ShoesDetails.filter((curr)=>curr.id === +link.slice(i+9,)[2] )
                    
                    break
                 case '2':
                      
-                    var case1 = ShoesList.filter((curr)=>curr.id == link.slice(i+9,)[2] )
+                    case1 = ShoesList.filter((curr)=>curr.id === +link.slice(i+9,)[2] )
                    break
+
+                default :
+                console.log('Alhamdulillah completeed')
 
             }
             
@@ -32,4 +35,4 @@ const Productind = () => {
     )
 }
 
-export default Productind
+export default Productind;

@@ -1,17 +1,19 @@
-import React ,{createContext , useContext, useReducer} from 'react'
+import React, { createContext, useReducer, useContext } from 'react'
 
-const initialState = {
-    basket: []
-}
-const creationContext = createContext(initialState);
+// Setting Up A Data Layer
+export const StateContext = createContext();
 
-const contextProvider = ({initialState, children, reducer }) => {
+// Building Up A Provider
+const StateProvider = ( {initialState, reducer, children} ) => {
     return(
-        <creationContext.Provider value={useReducer(reducer, initialState)}>
-              {children}
-        </creationContext.Provider>
+        <StateContext.Provider value={ useReducer(reducer, initialState) }>
+        
+            {children}
+        
+        </StateContext.Provider>
+
     );
 }
-export default contextProvider;
+export default StateProvider;
 
-const useStateValue =  useContext(creationContext)
+export const useStateValue = () => useContext(StateContext); 

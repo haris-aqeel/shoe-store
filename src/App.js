@@ -3,17 +3,15 @@ import './App.css';
 import { Route, BrowserRouter as Router, Switch} from 'react-router-dom';
 // import Navbar from './Components/Navbar'
 import Products from  './Pages/Products'
-import AboutUs from  './Pages/AboutUs'
-import ContactUs from  './Pages/ContactUs'
+import Checkout from './Components/Checkout'
 import Home from './Pages/Home'
 import Productind from './Pages/Productind'
-import reducer from './Pages/State/reducer'
-import GlobalState from './Pages/State/GlobalState'
-
+import reducer, { initialState } from './Pages/State/reducer'
+import StateProvider from './Pages/State/GlobalState'
 
 function App() {
   return (
-    <GlobalState reducer={reducer}>
+    <StateProvider reducer={reducer} initialState = {initialState}>
     <Router>
       <div className="app">
         <Switch>
@@ -26,16 +24,13 @@ function App() {
           <Route path='/product'>
             <Productind/>
           </Route>
-          <Route path='/about'>
-            <AboutUs/>
-          </Route>
-          <Route path='/contact'>
-            <ContactUs/>
+          <Route path='/checkout'>
+              <Checkout/>
           </Route>
         </Switch>
         </div>
     </Router>
-    </GlobalState>
+    </StateProvider>
   );
 }
 

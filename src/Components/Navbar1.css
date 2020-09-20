@@ -40,3 +40,58 @@
 .picture__Head{
     min-width: 400px;
 }
+
+#buttons12{
+
+    color: #b32727;
+    font-size: 12px;
+    width: 100px;
+    height: 35px;
+    margin: 20px auto;
+    
+    
+}
+
+#buttons12:hover{
+    
+    text-decoration: underline;
+}
+
+.checkout__main{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+
+
+.checkout__finalPrices{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    justify-content: space-evenly;
+    width: 340px;
+    font-weight: bold
+
+}
+
+.table{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.buttons{
+    margin-top: 50px;
+}
+
+.hr{
+    color: black;
+    font-size: 20px;
+}
+
+.x{
+    font-size: 22px;;
+}

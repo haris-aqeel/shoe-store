@@ -21,6 +21,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import { Link } from 'react-router-dom'
 
+import { useStateValue } from '../Pages/State/GlobalState'
 
 import HomeIcon from '@material-ui/icons/Home';
 import StorefrontIcon from '@material-ui/icons/Storefront';
@@ -33,7 +34,7 @@ import StarsIcon from '@material-ui/icons/Stars';
 
 import DisplayData from './DisplayData'
 import DisplayShoesList from './DisplayShoesList'
-import ProductInd from '../Pages/Productind'
+
 
 const drawerWidth = 240;
 
@@ -83,6 +84,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+
+  const [{basket}, dispatch ] = useStateValue();
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -90,6 +94,7 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  console.log(dispatch)
 
   
   if (props.data!==undefined){
@@ -126,18 +131,18 @@ function ResponsiveDrawer(props) {
               <ListItemText primary={'Products'} />
             </ListItem>
           </Link>
-          <Link to='/about'  style={{color: '#fff', textDecoration: 'none'}}>
-            <ListItem >
+          
+            <ListItem button onClick={() => alert('This functionality will be implemented soon...')} >
                <ListItemIcon className={classes.navIcon}> <InfoIcon /> </ListItemIcon>
-               <ListItemText primary={'About Us'} />
+               <ListItemText primary={'About Us'}  style={{color: '#fff', textDecoration: 'none'}} />
             </ListItem>
-          </Link>
-          <Link to="/contact"  style={{color: '#fff', textDecoration: 'none'}}>
-            <ListItem >
+          
+          
+            <ListItem button onClick={() => alert('This functionality will be implemented soon...')}>
                 <ListItemIcon className={classes.navIcon}> <ContactMailIcon /> </ListItemIcon>
-                <ListItemText primary={'Contact Us'} />
+                <ListItemText primary={'Contact Us'} style={{color: '#fff', textDecoration: 'none'}} />
             </ListItem>
-           </Link>
+          
         </List>
       <Divider />
           <List>
@@ -177,11 +182,13 @@ return (
           Welcome to ShoeStore
         </Typography>
         <MenuItem>
+        <Link to = '/checkout' style={{color: '#fff'}}>
          <IconButton aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={1} color="secondary" >
+              <Badge badgeContent={basket?.length} color="secondary" >
               <ShoppingCartIcon />
               </Badge>
           </IconButton>
+        </Link>
           </MenuItem>
       </Toolbar>
     </AppBar>

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart';
 
+import DeleteSweepIcon from "@material-ui/icons/DeleteSweep";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Divider from "@material-ui/core/Divider";
@@ -15,10 +15,9 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import Badge from "@material-ui/core/Badge";
 import MenuItem from "@material-ui/core/MenuItem";
-import MobileStepper from "@material-ui/core/MobileStepper";
+
 import Button from "@material-ui/core/Button";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
+
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -26,6 +25,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import Paper from "@material-ui/core/Paper";
 import { Link } from "react-router-dom";
 
 import "./Navbar1.css";
@@ -36,12 +36,9 @@ import LoyaltyIcon from "@material-ui/icons/Loyalty";
 import SubscriptionsIcon from "@material-ui/icons/Subscriptions";
 import InfoIcon from "@material-ui/icons/Info";
 import StarsIcon from "@material-ui/icons/Stars";
-import { useStateValue } from '../Pages/State/GlobalState'
-
+import { useStateValue } from "../Pages/State/GlobalState";
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-
 
 const useStyles2 = makeStyles((theme) => ({
   root: {
@@ -107,21 +104,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function ResponsiveDrawer(props) {
+  const [{ basket }, dispatch] = useStateValue();
 
-const [{basket}, dispatch] = useStateValue();
+  let count = 0;
+  basket.map((curr) => {
+    count += +curr.price;
+    return 'true'
+  });
 
-    
-const [open, setOpen] = React.useState(false);
-const handleClick = (obj) => {
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
     setOpen(true);
-    dispatch({
-      type: 'Add_To_The_Basket',
-      payload: obj
-    })
   };
-
-const handleClose = (event, reason) => {
-   if (reason === 'clickaway') {
+  const handleClicks = (curr) => {
+    dispatch({
+      type: "Remove_From_Basket",
+      payload: curr,
+    });
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -142,7 +145,7 @@ const handleClose = (event, reason) => {
   const handleStepChange = (step) => {
     setActiveStep(step);
   };
-console.log(open, handleClose)
+
   const { window } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -150,6 +153,31 @@ console.log(open, handleClose)
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const useStyles11 = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(1),
+        maxWidth: theme.spacing(80),
+        width: theme.spacing(46),
+        height: theme.spacing(26),
+      },
+    },
+    paper: {
+      display: "flex",
+      flexFlow: "row",
+      alignItems: "center",
+      justifyContent: "space-evenly",
+    },
+    sub_info: {
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "space-around",
+      alignItems: "center",
+    },
+  }));
+  const classes11 = useStyles11();
 
   const drawer = (
     <div>
@@ -246,7 +274,20 @@ console.log(open, handleClose)
   );
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
+    console.log(
+      AutoPlaySwipeableViews,
+      open,
+      handleClick,
+      handleClose,
+      classes2,
+      theme2,
+      activeStep,
+      maxSteps,
+      handleNext,
+      handleBack,
+      handleStepChange
+    );
+    
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -307,106 +348,70 @@ console.log(open, handleClose)
       <main className={classes.content}>
         <div className={classes.toolbar} />
 
-        <div className="individualElement">
-          <div className="picture__Head">
-            <h3>{props.name}</h3>
-            <div>
-              <div className={classes2.root}>
-                <AutoPlaySwipeableViews
-                  axis={theme2.direction === "rtl" ? "x-reverse" : "x"}
-                  index={activeStep}
-                  onChangeIndex={handleStepChange}
-                  enableMouseEvents
-                >
-                  {props.case[0].images!==undefined? props.case[0].images.map((step, index) => (
-                    <div key={step.label}>
-                      {Math.abs(activeStep - index) <= 2 ? (
+        {basket?.length > 0 ? (
+          <div className="checkout__main">
+            <div className="checkout__info">
+              <div className={classes11.root}>
+                {basket.map((curr) => {
+                  return (
+                    <>
+                      <Paper elevation={3} className={classes11.paper}>
                         <img
-                          className={classes2.img}
-                          src={step}
-                          alt={step.label}
+                          src={
+                            curr.image !== undefined
+                              ? curr.image
+                              : curr.images[0]
+                          }
+                          alt="shoeImage"
+                          width="140"
+                          height="140"
                         />
-                      ) : null}
-                    </div>
-                  )):<img
-                  className={classes2.img}
-                  src={props.case[0].image}
-                  alt="shoes_Image"
-                 
-                />}
-                </AutoPlaySwipeableViews>
-                <MobileStepper
-                  steps={maxSteps}
-                  position="static"
-                  variant="text"
-                  style={{ maxWidth: "300px" }}
-                  activeStep={activeStep}
-                  nextButton={
-                    <Button
-                      size="small"
-                      onClick={handleNext}
-                      disabled={activeStep === maxSteps - 1}
-                    >
-                      Next
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowLeft />
-                      ) : (
-                        <KeyboardArrowRight />
-                      )}
-                    </Button>
-                  }
-                  backButton={
-                    <Button
-                      size="small"
-                      onClick={handleBack}
-                      disabled={activeStep === 0}
-                    >
-                      {theme.direction === "rtl" ? (
-                        <KeyboardArrowRight />
-                      ) : (
-                        <KeyboardArrowLeft />
-                      )}
-                      Back
-                    </Button>
-                  }
-                />
+                        <div className={classes11.sub_info}>
+                          <strong>{curr.name}</strong>
+                          <h2>${curr.price}</h2>
+                          <Button
+                            variant="contained"
+                            className="AddtoCart"
+                            id="buttons12"
+                            onClick={() => {
+                              handleClicks(curr);
+                            }}
+                          >
+                            <DeleteSweepIcon />
+                            Remove
+                          </Button>
+                        </div>
+                      </Paper>
+                    </>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="checkout__finalPrices">
+              <h2>Summary</h2>
+              <div className="table">
+                <span>SubTotal  </span>
+                <span>${count}</span>
+              </div>
+              <div className="table">
+                <span>Delievery Charges  </span>
+                <span>${0}</span>
+              </div>
+              <hr className="hr" />
+              <div className="table x">
+                <span>Total </span>
+                <span>${count}</span>
+              </div>
+              <div className="buttons">
+                <Button variant="contained" className="AddtoCart" id="buttons1">
+                  Checkout
+                </Button>
               </div>
             </div>
           </div>
-          <div className="detail__pricing">
-                <span className="jss142">${props.case[0].price}</span>
-            <h2>{props.case[0].name}</h2>
-            <h2>Description</h2>
-            <p>{props.case[0].desc!==undefined ? props.case[0].desc: props.case[0].name} "harnesses the old-school look of Nike Basketball with a vintage midsole finish, making it look like you've been saving them for years."</p>
-            <h2>Reviews</h2>
-            <p>
-              <span style={{fontSize: '24px'}} role="img" aria-labelledby="[]">🌟🌟🌟🌟🌟</span>
-            </p>
-            <div className="buttons">
-              <Button
-                onClick={()=>handleClick(props.case[0])}
-                
-                variant="contained"
-                className='AddtoCart'
-                startIcon={<AddShoppingCartIcon />}
-                id="buttons1"
-              >
-                Add To The Cart
-              </Button>
-              <Button
-                onClick={handleClick}
-                
-                variant="contained"
-
-                className='MarkFavourite'
-                startIcon={<AddShoppingCartIcon />}
-                id="buttons2"
-              >
-                Mark As Favourite
-              </Button>
-            </div>
-          </div>
-        </div>
+        ) : (
+          <div></div>
+        )}
       </main>
     </div>
   );

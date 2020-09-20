@@ -1,5 +1,5 @@
 import React from "react";
-import Products from '../Pages/Products'
+
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -66,7 +66,7 @@ export default function DisplayData(props) {
                     className="ratings"
                     style={{ fontSize: "22px", padding: "5px 15px" }}
                   >
-                    <span role="img">🌟🌟🌟🌟🌟</span>
+                    <span role="img" aria-labelledby='[]'>🌟🌟🌟🌟🌟</span>
                   </div>
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -161,105 +161,7 @@ export default function DisplayData(props) {
         })}
       </Grid>
 
-      {/*             
-        <Grid container >
-           
-          <Grid item xs={4}>
-            <Card className={classes.root} style={{width: '100', margin: '0 8px'}}>
-                <CardActionArea>
-                    
-                    <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="270"
-                    image={item1.images[0]}
-                    title="Contemplative Reptile"
-                    />
-                    <div className="ratings" style={{fontSize: '22px', padding: '5px 15px'}}>🌟🌟🌟🌟🌟 </div>
-                    <CardContent>
-                    <Typography gutterBottom variant="h5" component="h2">
-                        {item1.name}
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary" component="p" >
-                        {(item1.desc.slice(0, 135)) + '....'}
-                    </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" style={{color: '#b32727'}}>
-                        Go To Products
-                    </Button>
-                    <Button size="small" style={{color: '#b32727'}}>
-                    Learn More
-                    </Button>
-                </CardActions>
-            </Card>
-           </Grid>
-        
-        <Grid  justify="center" item xs={4}>
-
-        <Card className={classes.root}  style={{width: '100', margin: '0 8px'}}>
-            <CardActionArea>
-                
-                <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                height="270"
-                image={item1.images[0]}
-                title="Contemplative Reptile"
-                />
-                <div className="ratings" style={{fontSize: '22px', padding: '5px 15px'}}>🌟🌟🌟🌟🌟 </div>
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {item1.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p" >
-                    {(item1.desc.slice(0, 135)) + '....'}
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small" style={{color: '#b32727'}}>
-                    Go To Products
-                </Button>
-                <Button size="small" style={{color: '#b32727'}}>
-                Learn More
-                </Button>
-            </CardActions>
-        </Card>
-        </Grid>
-        <Grid justify="center" item xs={4}>
-        <Card className={classes.root}  style={{width: '90', margin: '0 8px'}}>
-            <CardActionArea>
-                
-                <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                height="270"
-                image={item1.images[0]}
-                title="Contemplative Reptile"
-                />
-                <div className="ratings" style={{fontSize: '22px', padding: '5px 15px'}}>🌟🌟🌟🌟🌟 </div>
-                <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                    {item1.name}
-                </Typography>
-                <Typography variant="body2" color="textSecondary" component="p" >
-                    {(item1.desc.slice(0, 135)) + '....'}
-                </Typography>
-                </CardContent>
-            </CardActionArea>
-            <CardActions>
-                <Button size="small"style={{color: '#b32727'}}>
-                    Go To Products
-                </Button>
-                <Button size="small"style={{color: '#b32727'}}>
-                Learn More
-                </Button>
-            </CardActions>
-        </Card>
-          </Grid>
-        </Grid> */}
+      
     </div>
   );
 }
